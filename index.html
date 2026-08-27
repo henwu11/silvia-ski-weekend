@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#002f49">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ski-Aufenthalt">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/icon-180.jpg">
+<title>Silvia – Ski-Aufenthalt</title>
+<style>
+:root{--navy:#002f49}
+*{box-sizing:border-box}
+html,body{
+ margin:0!important;padding:0!important;width:100%;height:100%;
+ overflow:hidden!important;background:var(--navy)!important;
+}
+#app{
+ position:fixed;inset:0;
+ width:100vw;height:100vh;height:100dvh;
+ overflow:hidden;background:var(--navy);
+ display:flex;align-items:flex-end;justify-content:center;
+}
+.page{
+ position:absolute;
+ left:50%;bottom:0;transform:translateX(-50%);
+ width:100%;height:100%;
+ display:none;
+ align-items:flex-end;justify-content:center;
+ background:var(--navy);
+ overflow:hidden;
+}
+.page.active{display:flex}
+.page img{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ object-position:center bottom;
+ margin:0;padding:0;
+ user-select:none;-webkit-user-drag:none;
+}
+/* Nur eine Navigation: die sichtbare Leiste ist bereits Bestandteil des Seitenbildes.
+   Diese unsichtbaren Klickflächen liegen exakt darüber. */
+.nav{
+ position:fixed;
+ left:50%;transform:translateX(-50%);
+ bottom:0;
+ width:100%;
+ height:9.5%;
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ z-index:50;
+}
+.nav button{border:0;background:transparent;padding:0;margin:0;cursor:pointer}
+.action{position:fixed;z-index:40;border:0;background:transparent;cursor:pointer}
+#giftDiscover{left:7%;right:7%;bottom:11.5%;height:7.5%}
+#hotelWeb{left:8%;right:8%;bottom:11.5%;height:7%}
+#openGift{right:4%;bottom:11.5%;width:45%;height:18%}
+
+/* Auf sehr breiten Desktop-Fenstern keine unnatürliche Vergrößerung. */
+@media(min-width:700px){
+ #app{width:430px;left:50%;right:auto;transform:translateX(-50%)}
+ .page{width:430px}
+ .nav{width:430px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+ <section class="page active" data-page="start"><img src="./images/start.jpg?v=5" alt="Startseite"><button id="giftDiscover" class="action" aria-label="Geschenk entdecken"></button></section>
+ <section class="page" data-page="overview"><img src="./images/overview.jpg?v=5" alt="Überblick"></section>
+ <section class="page" data-page="hotel"><img src="./images/hotel.jpg?v=5" alt="Unterkunft"><a id="hotelWeb" class="action" href="https://kronechurwalden.ch/" target="_blank" rel="noopener" aria-label="Webseite öffnen"></a></section>
+ <section class="page" data-page="travel"><img src="./images/travel.jpg?v=5" alt="Anreise"></section>
+ <section class="page" data-page="gift"><img src="./images/gift.jpg?v=5" alt="Geschenk"><button id="openGift" class="action" aria-label="Geschenk öffnen"></button></section>
+ <nav class="nav" aria-label="Navigation">
+  <button data-go="start" aria-label="Start"></button><button data-go="overview" aria-label="Überblick"></button>
+  <button data-go="hotel" aria-label="Unterkunft"></button><button data-go="travel" aria-label="Anreise"></button><button data-go="gift" aria-label="Geschenk"></button>
+ </nav>
+</div>
+<script>
+(function(){
+ const pages=[...document.querySelectorAll('.page')];
+ function go(name){
+   pages.forEach(p=>p.classList.toggle('active',p.dataset.page===name));
+   history.replaceState(null,'','#'+name);
+ }
+ document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+ document.getElementById('giftDiscover').addEventListener('click',()=>go('gift'));
+ document.getElementById('openGift').addEventListener('click',()=>alert('Jetzt wartet noch ein weiteres Geschenk auf dich. Öffne es!'));
+ const h=location.hash.slice(1); if(['start','overview','hotel','travel','gift'].includes(h))go(h);
+})();
+</script>
+</body></html>
