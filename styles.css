@@ -1,0 +1,14 @@
+
+:root{--blue:#063c52;--blue2:#022f43;--cream:#f7eddd;--ink:#0a3043;--red:#a62b1e;--line:#d5c4aa}
+*{box-sizing:border-box}html,body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body{min-height:100vh}.app{max-width:430px;margin:auto;min-height:100vh;padding-bottom:68px;background:#fbf3e6}
+header{height:58px;background:linear-gradient(var(--blue),var(--blue2));color:white;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;letter-spacing:.8px}
+.hero-wrap{position:relative}.hero{display:block;width:100%;height:255px;object-fit:cover}.fifty{position:absolute;right:18px;top:12px;font-size:76px;font-weight:900;color:#f8e9c9;line-height:1}
+main{padding:18px 20px}.center{text-align:center}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.4px}h1,h2,h3{font-style:normal;margin:5px 0 10px;font-weight:800}h1{font-size:31px;letter-spacing:2px}h2{font-size:25px}p{line-height:1.45}.rule{height:1px;background:var(--line);margin:10px 0}.meta{font-weight:800}.btn{display:block;width:100%;padding:14px;border:0;border-radius:13px;background:var(--blue);color:#fff;text-decoration:none;text-align:center;font-weight:800;margin:10px 0}.btn.outline{background:transparent;color:var(--ink);border:1.5px solid var(--blue)}
+.rows{display:grid;gap:13px;margin:16px 0}.row{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}.ico{width:25px;height:25px;border-radius:6px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:13px}.card{border:1px solid var(--line);border-radius:12px;padding:11px;background:#f9edd9}.gift{text-align:center}.gift img{width:90%;max-height:330px;object-fit:contain}.question{font-size:21px;font-weight:700;line-height:1.35;margin:18px 0 6px}.arrow{font-size:60px;line-height:1;color:var(--blue);margin:5px 0 8px}
+.route{border:1.5px solid #5a7580;border-radius:12px;padding:9px;margin-top:14px;background:#f8edd9}.route-title{font-size:12px;font-weight:900}.route svg{width:100%;height:auto}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);height:66px;background:linear-gradient(var(--blue),var(--blue2));display:grid;grid-template-columns:repeat(5,1fr);z-index:5}
+nav a{color:#fff;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;gap:3px}.navicon{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(min-width:700px){body{padding:20px}.app{border-radius:22px;overflow:hidden;box-shadow:0 12px 35px #0003}nav{border-radius:0 0 22px 22px}}
+/* v1 Header-Fix: auf allen Seiten nur eine leere, einfarbig blaue Kopfzeile */
+header{height:58px;background:var(--blue)!important;color:transparent!important;font-size:0!important;letter-spacing:0!important;line-height:0!important;overflow:hidden!important}
